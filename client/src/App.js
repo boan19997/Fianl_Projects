@@ -44,10 +44,8 @@ function App() {
   //ko cho cho người dùng thay đổi link và xét giá trị xem đã có user chưa nếu chưa sẽ qua login còn rồi sẽ qua home và giữ như v
   useEffect(() => {
     const tokene = window.localStorage.getItem("tokene");
-    const status = window.localStorage.getItem("auth");
-    if (tokene && status === true) {
+    if (tokene != undefined) {
       const tokene = window.localStorage.getItem("tokene");
-      const status = window.localStorage.getItem("auth");
       getrole(tokene).then((data) => {
         getinfor(data.data.UserID).then((data) => {
           dispatch({

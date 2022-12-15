@@ -3,9 +3,7 @@ import { BsFillPlayFill, BsHeartFill } from 'react-icons/bs'
 import { RiPlayListAddFill } from 'react-icons/ri' 
 import { actionType } from '../../context/reducer'
 import { useStateValue } from '../../context/StateProvider'
-import images from '../../assets/images'
 import { addFavourites, addPlayList, deleteFavourites, getFavourites } from '../../api'
-import ModalSuccess from '../modalNotify/modalsucces'
 
 function PlayCardFauvorites({ data, index}) {
     const [{ songIndex, isSongPlaying , user }, dispath] = useStateValue()

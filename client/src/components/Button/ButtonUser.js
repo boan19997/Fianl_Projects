@@ -20,7 +20,9 @@ function ButtonUser() {
 
     useEffect(() => {
         const token = window.localStorage.getItem("tokene")
-        getrole(token).then(data => {setname(data.data.name);}).catch()
+        if(token != undefined) {
+            getrole(token).then(data => {setname(data.data.name);}).catch()
+        }
     },[])
     
     const logOut = () => {

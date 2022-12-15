@@ -153,7 +153,7 @@ export const PlayListCard = () => {
 
 
     return (
-        <div className='absolute left-4 bottom-24 py-2 w-350 max-w-[350px] h-510 max-h-[510px] flex flex-col overflow-y-scroll rounded-md shadow-md bg-primary'>
+        <div className='absolute left-4 bottom-24 py-2 w-350 max-w-[350px] h-510 max-h-[510px] bg-white flex flex-col overflow-y-scroll rounded-md shadow-md bg-primary'>
             {listPlayList ? (
                 listPlayList.map((music, index) => (
                     <motion.div

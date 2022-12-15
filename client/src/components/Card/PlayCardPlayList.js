@@ -1,10 +1,9 @@
 import React from 'react'
-import { BsFillPlayFill } from 'react-icons/bs'
+import { BsFillPlayFill,  BsHeartFill } from 'react-icons/bs'
+import { RiPlayListAddFill } from 'react-icons/ri' 
 import { actionType } from '../../context/reducer'
 import { useStateValue } from '../../context/StateProvider'
-import images from '../../assets/images'
-import { addFavourites, deleteFavourites, deletePlaylist, getFavourites } from '../../api'
-import ModalSuccess from '../modalNotify/modalsucces'
+import { addFavourites, deletePlaylist, getFavourites } from '../../api'
 
 function PlayCardPlayList({ data, index}) {
     const [{ songIndex, isSongPlaying , user }, dispath] = useStateValue()
@@ -108,9 +107,14 @@ function PlayCardPlayList({ data, index}) {
                     </div>
                 </div>
                 </div>
+                    
                 <div className='flex justify-around mt-1.5'>
-                    <img onClick={()=>addToFavourites(data._id)} src={images.favourites} alt="logo" className={`cursor-pointer  duration-500 w-10  hover:bg-red-300`}/>
-                    <img onClick={notifyAdded} src={images.playlist} alt="logo" className={`cursor-pointer  duration-500 w-10 hover:bg-red-300` }/>
+                    <div className={`cursor-pointer items-center text-white duration-500 w-10  hover:text-red-500`}  onClick={()=>addToFavourites(data._id)}>
+                        <BsHeartFill/>
+                    </div>
+                    <div className={`cursor-pointer flex justify-end text-white duration-500 w-10 hover:text-blue-500`} onClick={notifyAdded}>
+                        <RiPlayListAddFill/>
+                    </div>
                 </div>
             </div>
         </div>

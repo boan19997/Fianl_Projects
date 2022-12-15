@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getAllSongs,getAllAlbums, searchNameSong } from "../../api";
-import { AlbumContainer, ButtonUser,  Sidebar } from "../../components";
+import { getAllSongs, getAllAlbums, searchNameSong } from "../../api";
+import { AlbumContainer, ButtonUser, Sidebar } from "../../components";
 import { actionType } from "../../context/reducer";
 import { useStateValue } from "../../context/StateProvider";
 import HomeContainer from "./HomeContainer";
@@ -11,35 +11,55 @@ function Home() {
   const [isFoucs, setIsFoucs] = useState(false);
 
   useEffect(() => {
+    const getdata = () => {
+      getAllAlbums().then((data) => {
+        dispath({
+          type: actionType.SET_ALL_ALBUMS,
+          allAlbums: data.album,
+        });
+      });
+    };
+
     if (!allAlbums) {
-        getAllAlbums().then((data) => {
-            dispath({
-                type : actionType.SET_ALL_ALBUMS,
-                allAlbums : data.album,
-            })
-        })
+      getdata()
+    }else{
+      dispath({
+        type: actionType.SET_ALL_ALBUMS,
+        allAlbums: [],
+      });
+      getdata()
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (valueData) {
       searchNameSong(valueData).then((data) => {
         dispath({
+          type: actionType.SET_ALL_SONGS,
+          allSongs: data.songs,
+        });
+      });
+    } else {
+      const getdata = () => {
+        getAllSongs().then((data) => {
+          dispath({
             type: actionType.SET_ALL_SONGS,
             allSongs: data.songs,
           });
-      });
-    }else {
-        if (!allSongs) {
-            getAllSongs().then((data) => {
-              dispath({
-                type: actionType.SET_ALL_SONGS,
-                allSongs: data.songs,
-              });
-            });
-          }
+        });
+      }
+
+      if (!allSongs) {
+        getdata()
+      }else {
+        dispath({
+          type: actionType.SET_ALL_SONGS,
+          allSongs: [],
+        });
+        getdata()
+      }
     }
-  }, [valueData]);
+  }, [valueData, getAllSongs]);
 
   return (
     <div className="flex">
@@ -65,22 +85,17 @@ function Home() {
 
           <ButtonUser />
         </div>
-        <h2 className="font-mono text-3xl text-gray-500">
-          Home Music
-        </h2>
+        <h2 className="font-mono text-3xl text-gray-500">Home Music</h2>
 
         <div className="grid gap-y-6 pt-6">
           <HomeContainer data={allSongs} />
         </div>
 
-        <h2 className="font-mono text-3xl text-gray-500">
-          Album Music
-        </h2>
+        <h2 className="font-mono text-3xl text-gray-500">Album Music</h2>
 
         <div className="grid gap-y-6 pt-6">
-          <AlbumContainer data={allAlbums} user={true}/>
+          <AlbumContainer data={allAlbums} user={true} />
         </div>
-        
       </div>
     </div>
   );

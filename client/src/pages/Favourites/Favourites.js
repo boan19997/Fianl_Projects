@@ -11,7 +11,7 @@ function Favourites() {
     },dispath
     ] = useStateValue()
     useEffect(()=>{
-        if(!listFauvorites){
+        const getdata = () => {
             getFavourites(user.user._id).then((data) => {
                 console.log('datafavorite',data.user.songs)
                 dispath({
@@ -19,7 +19,16 @@ function Favourites() {
                     listFauvorites : data.user.songs,
                 })
             })
-        }  
+        }
+        if(!listFauvorites){
+            getdata()
+        }else {
+            dispath({
+                type : actionType.SET_All_FAVORITE,
+                listFauvorites : [],
+            })
+            getdata()
+        }
     },[])
     return ( 
         <div className='flex'>

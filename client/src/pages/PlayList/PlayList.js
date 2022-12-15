@@ -10,16 +10,10 @@ function PlayList() {
     },dispath] = useStateValue()
     const [playlistAll, settPlaylistAll] = useState([])
     useEffect(()=>{
-        console.log('listPlayList',listPlayList)
-        console.log('dataplaylist',user.user.playlist)
-
-        console.log('allSongs',allSongs)
-        console.log("123",user.user.playlist.map(x => allSongs.find(y => y._id === x)))
-
         let getAllPlaylist = user.user.playlist.map(x => allSongs.find(y => y._id === x))
         settPlaylistAll(getAllPlaylist)
 
-        if(!listPlayList){
+        const getdata = () => {
             getFavourites(user.user._id).then((data) => {
                 console.log('datalist',data.user.playlist)
                 dispath({
@@ -27,7 +21,17 @@ function PlayList() {
                     listPlayList : data.user.playlist,
                 })
             })
-        } 
+        }
+
+        if(!listPlayList){
+            getdata()
+        }else {
+            dispath({
+                type : actionType.SET_All_PLAYLIST,
+                listPlayList : [],
+            })
+            getdata()
+        }
     },[])
     
 

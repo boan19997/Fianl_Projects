@@ -6,7 +6,7 @@ const images = {
     favourites: require('../../assets/images/favourites.png'),
     dashboard: require('../../assets/images/dashboard.png'),
     playlist: require('../../assets/images/playlist.png'),
-    upload: require('../../assets/images/upload.png'),
+    album: require('../../assets/images/album.png'),
     song: require('../../assets/images/no-img.png'),
     user_img: require('../../assets/images/user-image.png'),
     backgruond: require('../../assets/images/background.jpg'),

@@ -32,8 +32,14 @@ function Album() {
                         <ButtonUser/>
                     </div>
                     
-                    Album page
-                    <AlbumContainer data={allAlbums} user={true}/>
+                    <h2 className="font-mono text-3xl text-gray-500">
+                        Album page
+                    </h2>
+                    
+                    <div className="grid gap-y-6 pt-6">
+                        <AlbumContainer data={allAlbums} user={true}/>
+                    </div>
+                    
                 </div>
         </div>
      );

@@ -46,7 +46,7 @@ function Sidebar() {
             </NavLink> 
             <NavLink to={"/album"}
                 className={({isActive}) => isActive ? isActiveStyles : isNotActiveStyles}>
-                <img src={images.upload} alt="home-icon" /> 
+                <img src={images.album} alt="home-icon" /> 
                 <span className={`${!open && "hidden"} origin-left font-medium text-2xl duration-200`}>Album</span>
               </NavLink>             
         </div>
