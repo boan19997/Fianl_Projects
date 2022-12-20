@@ -2,7 +2,7 @@ import { getAuth } from 'firebase/auth'
 import React, { useState,useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaCrown } from 'react-icons/fa'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {getrole} from '../../api'
 
 import { app } from '../../config/firebase.config'
@@ -12,7 +12,7 @@ import images from '../../assets/images'
 function ButtonUser() {
 
     //để lấy tên user từ gg đặt sẵn 
-    const [{user}, dispatch] = useStateValue()
+    const [{user}] = useStateValue()
     const [isMenu, setIsMenu] = useState(false)
     const [name, setname] = useState('')
     
@@ -20,7 +20,7 @@ function ButtonUser() {
 
     useEffect(() => {
         const token = window.localStorage.getItem("tokene")
-        if(token != undefined) {
+        if(token !== undefined) {
             getrole(token).then(data => {setname(data.data.name);}).catch()
         }
     },[])
@@ -54,10 +54,6 @@ function ButtonUser() {
                     animate={{opacity : 1, y : 0}}
                     exit={{opacity : 0, y : 50}}
                     className="absolute z-10  flex flex-col p-3 top-12 right-0 w-275 gap-2 bg-card shadow-lg rounded-lg backdrop-blur-sm">
-                        <NavLink to={'/useProfile'}>
-                            <p className="text-base text-textColor hover:font-semibold duration-150 transition-all ease-in-out">Profile</p>
-                        </NavLink>
-
                         <p className="text-base text-textColor hover:font-semibold duration-150 transition-all ease-in-out" onClick={logOut}>Sign Out</p>
                     </motion.div>
                 )}

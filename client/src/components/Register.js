@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import images from "../assets/images";
 import { register } from "../api";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
@@ -93,15 +93,16 @@ function Register() {
               >
                 Create an account
               </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <div className="flex text-sm font-light text-gray-500 dark:text-gray-200">
                 Already have an account?{" "}
-                <a
-                  href="#"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Login here
-                </a>
-              </p>
+                <NavLink to={"/login"}>
+                  <div className="font-medium ml-1 text-cartNumBg hover:underline dark:text-cartNumBg"
+                  >
+                    Login here
+                  </div>
+                
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>

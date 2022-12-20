@@ -123,11 +123,11 @@ function Login({ setAuth }) {
               >
                 Sign in
               </button>
-              <div className="text-sm font-light text-gray-500 dark:text-gray-200">
+              <div className="flex text-sm font-light text-gray-500 dark:text-gray-200">
                 Don’t have an account yet?{" "}
                 <NavLink to={"/register"}>
                   <div
-                    className="font-medium text-primary-700 hover:underline dark:text-primary-500"
+                    className="font-medium ml-1 text-primary-700 hover:underline dark:text-primary-500"
                   >
                     Sign up
                   </div>
